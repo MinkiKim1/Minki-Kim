@@ -1,0 +1,95 @@
+{
+ "cells": [
+  {
+   "cell_type": "markdown",
+   "id": "9232fc06",
+   "metadata": {},
+   "source": [
+    "4. Explain the apparent contradiction between the factual statements regarding the fit below that \"the model only explains 17.6% of the variability in the data\" while at the same time \"many of the coefficients are larger than 10 while having strong or very strong evidence against the null hypothesis of 'no effect'\"\n",
+    "\n",
+    "The two claims offered in this problem are \"The model explains only 17.6% of the variability in the data\" and \"Many coefficients are greater than 10, providing strong evidence against the null hypothesis of 'no effect'.\" Although on first look these two remarks seem conflicting, in regression analysis R-squared and p-value have distinct meanings, hence they may exist together. A measure of the extent to which the model explains the variability in the dependent variable, R-squared A result of 17.6% suggests that the model may have additional significant elements that it is failing to explain as it can only account for around 17.6% of the overall variability.\n",
+    "\n",
+    "Conversely, the p-value gauges how statistically significant certain predictor factors are for the dependent variable. Strong proof that the variable substantially influences the result is found if a given coefficient exceeds 10 and the p-value is quite low. Stated differently, even with low R-squared, individual factors may have a significant impact on the result. This paradox indicates that while the factors included have a major impact on the dependent variable, the model is insufficient to describe the whole data.\n",
+    "\n",
+    "Building a multiple regression model to forecast HP using the variables `Sp. Def` and `Generation` from Pokemon data is shown in the given code. Treating the `Generation` variable as a categorical variable, the code expands the model by adding an interaction term to enable the influence of `Sp. Def`. to change across generations. This example demonstrates how low the R-squared of the whole model may be even in cases where certain variables have a significant impact, suggesting possible inexplicable variance. In essence, the reason a model could have a low R-squared and the p-values of individual variables may be significant is the model does not explain all the variability in the data, but the included factors have a meaningful influence on the result.\n",
+    "\n",
+    "Links to Chatbot Session: https://chatgpt.com/share/67368aba-aa6c-800f-aa25-7e33a3a4c66e\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "4516eee9",
+   "metadata": {},
+   "source": [
+    "7. Discuss with a ChatBot the rationale and principles by which model5_linear_form is extended and developed from model3_fit and model4_fit; model6_linear_form is extended and developed from model5_linear_form; and model7_linear_form is extended and developed from model6_linear_form; then, explain this breifly and consisely in your own words\n",
+    "\n",
+    "`model5_linear_form` is the first model built on `model3_fit` and `model4_fit`. Initial models `model3_fit` and `model4_fit` employed fundamental factors like `Attack`, `Speed`, and `Legendary` to estimate Pokémon HP, but they are limited in their ability to represent varied data features. The `model5_linear_form` introduced `Sp. Def` and `Sp. Atk` abilities to Pokémon, as well as interaction terms between `Generation` and `Type 1` and `Type 2`. In order to correctly illustrate the impact of each generation and type on HP, it details the kinds and abilities of Pokémon from each generation. This addition lets the algorithm assess Pokémon of each generation and type more thoroughly, improving HP prediction. \n",
+    "\n",
+    "\n",
+    "\n",
+    "The `model6_linear_form` model, evolved from `model5_linear_form`, predicts Pokémon HP using ability variables including `Attack`, `Speed`, `Sp. Def`, and `Sp. Atk`. Model6_linear_form includes additional variables than the previous model to better describe the impact of ability factors on HP. Multicollinearity difficulties, in which variables are correlated, rise with the number of variables. When multicollinearity rises, regression coefficients become less reliable and the model may be overfitted to training data, making fresh data predictions unreliable. Thus, when adding variables, the multicollinearity issue must be considered to improve model explanatory power.\n",
+    "\n",
+    "\n",
+    "\n",
+    "To address multicollinearity, `model7_linear_form` adds centering and scaling to `model6_linear_form`. To decrease correlation between variables, we utilize the `scale(center(...))` function to set the mean to 0 and alter the range of values. Centering and scaling reduce multicollinearity and improve model fit. This method stabilizes the model and maintains prediction performance on fresh data. The final model, `model7_CS_linear_form`, provides better HP prediction by incorporating data attributes and minimizing multicollinearity.\n",
+    "\n",
+    "\n",
+    "\n",
+    "The expansion from `model5_linear_form` to `model7_linear_form` involves adding variables and interaction terms to enhance predictive power and addressing multicollinearity to ensure model stability. This technique allows the final model to accurately forecast fresh Pokémon data and represent its complicated patterns.\n",
+    "\n",
+    "Links to Chatbot Session: https://chatgpt.com/share/67368bce-dbe8-800e-9396-f674996c6d3c\n",
+    "\n"
+   ]
+  },
+  {
+   "cell_type": "markdown",
+   "id": "48d9c22e",
+   "metadata": {},
+   "source": [
+    "9. Work with a ChatBot to understand the meaning of the illustration below; and, explain this in your own words\n",
+    "\n",
+    "The model7_fit process combines variables and interactions to capture complicated data patterns. Complex models have more data explanatory power, increasing in-sample R-squared. Models with multiple interactions and variables might overfit because they catch minor patterns or noise that don't generalize. Overfit models may perform well on training data but poorly on fresh data or real-world circumstances. Thus, model7_fit may perform well on training data but not fresh data.\n",
+    "\n",
+    "However, model6_fit reduces model structure and removes variable interactions to increase interpretability. Simple, easily understood models pinpoint essential linkages and explain outcomes. Simpler models generalize better to new data because they overfit less. Model6_fit's strong out-of-sample R-squared values suggest consistent performance on fresh data, making it acceptable for applications beyond the training set.\n",
+    "\n",
+    "Complex models capture complex data patterns but are hard to comprehend. Model7_fit's various interaction terms make it hard to distinguish each variable's impact. In contrast, simpler models like model6_fit with fewer interactions highlight individual variables, making them easier to analyze and comprehend. Business and governmental actions need interpretability to comprehend varying impacts.\n",
+    "\n",
+    "In the code provided, the investigation examines model generalizability and performance using Pokémon Gen 1 and Gen 6 data. The first and second code blocks train model7_linear_form on Gen 1 and Gen 6 data, respectively, to assess model accuracy on training and test data using in-sample and out-of-sample R-squared values. The third and fourth code blocks apply the same approach to model6_linear_form on Gen 1 and Gen 6, comparing model7_fit and model6_fit's consistency on fresh data.\n",
+    "\n",
+    "While model7_fit shows strong explanatory power on the training data, it may underperform on the test data due to overfitting. On the other hand, model6_fit provides more consistent predictions on fresh data, demonstrating robustness against overfitting. model7_fit performs well on training data, but struggles with real-world predictions due to overfitting. For practical and reliable data analysis and predictive modeling, the simpler model6_fit is generally a better choice, especially when the prediction accuracy is similar.\n",
+    "\n",
+    "Links to Chatbon Session: https://chatgpt.com/share/67369f20-e558-800e-bb08-d2ca9adef298"
+   ]
+  },
+  {
+   "cell_type": "code",
+   "execution_count": null,
+   "id": "92321e41",
+   "metadata": {},
+   "outputs": [],
+   "source": []
+  }
+ ],
+ "metadata": {
+  "kernelspec": {
+   "display_name": "Python 3 (ipykernel)",
+   "language": "python",
+   "name": "python3"
+  },
+  "language_info": {
+   "codemirror_mode": {
+    "name": "ipython",
+    "version": 3
+   },
+   "file_extension": ".py",
+   "mimetype": "text/x-python",
+   "name": "python",
+   "nbconvert_exporter": "python",
+   "pygments_lexer": "ipython3",
+   "version": "3.11.6"
+  }
+ },
+ "nbformat": 4,
+ "nbformat_minor": 5
+}
